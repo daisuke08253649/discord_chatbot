@@ -1,0 +1,24 @@
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Vector Database
+chroma_db/
+*.parquet
+
+# Virtual Environment
+myvenv/
+.venv/
+venv/
+ENV/
+
+# その他の一般的な除外項目
+secrets
+.env
+.venv/
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
