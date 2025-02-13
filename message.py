@@ -1,7 +1,9 @@
 import os
 import discord
 from wiki_assistant import Chatgpt
+from wiki_embeddings import WikiContent
 from dotenv import load_dotenv
+from datetime import datetime
 
 load_dotenv()
 
@@ -33,5 +35,15 @@ async def on_message(message):
 
 
 if __name__ == '__main__':
-    # Bot起動
-    client.run(token)
+    try:
+        print("ベクトルDBの状態を確認中...")
+        vectorstore = WikiContent.get_vectorstore()
+        # vectorstoreをChatgptクラスに設定
+        Chatgpt.set_vectorstore(vectorstore)
+        print("ベクトルDBの準備完了")
+
+        # Bot起動
+        client.run(token)
+
+    except Exception as e:
+        print(f"エラーが発生しました: {e}")

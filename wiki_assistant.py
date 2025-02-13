@@ -1,17 +1,21 @@
 from langchain_openai import ChatOpenAI
 from langchain.chains import ConversationalRetrievalChain
-from wiki_embeddings import WikiContent
+# from wiki_embeddings import WikiContent
 
 
 class Chatgpt():
     # クラス変数としてvectorstoreを保持
     _vectorstore = None
 
+    @classmethod
+    def set_vectorstore(cls, vectorstore):
+        # vectorstoreを設定するクラスメソッド
+        cls._vectorstore = vectorstore
+
     def __init__(self, message):
         self.message = message
-        # vectorstoreが未初期化の場合のみ実行
-        if Chatgpt._vectorstore is None:
-            Chatgpt._vectorstore = WikiContent.get_vectorstore()
+        if self._vectorstore is None:
+            raise ValueError("vectorstoreが初期化されていません")
 
     def resChatgpt(self):
         # ChatGPTモデルの設定
