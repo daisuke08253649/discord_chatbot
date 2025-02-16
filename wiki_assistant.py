@@ -1,6 +1,5 @@
 from langchain_openai import ChatOpenAI
 from langchain.chains import ConversationalRetrievalChain
-# from wiki_embeddings import WikiContent
 
 
 class Chatgpt():
