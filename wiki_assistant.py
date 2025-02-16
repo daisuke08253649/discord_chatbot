@@ -19,7 +19,7 @@ class Chatgpt():
 
     def resChatgpt(self):
         # ChatGPTモデルの設定
-        llm = ChatOpenAI(model="gpt-4o-mini")
+        llm = ChatOpenAI(model="gpt-4o")
 
         # RAGチェーンの作成
         qa_chain = ConversationalRetrievalChain.from_llm(
