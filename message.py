@@ -9,7 +9,7 @@ from app import keep_alive
 
 load_dotenv()
 
-token = os.getenv("TOKEN")
+token = os.getenv("DISCORD_TOKEN")
 
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
