@@ -1,9 +1,11 @@
 import os
 import discord
+import asyncio
 from wiki_assistant import Chatgpt
 from wiki_embeddings import WikiContent
 from dotenv import load_dotenv
 from datetime import datetime
+from app import keep_alive
 
 load_dotenv()
 
@@ -16,7 +18,7 @@ client = discord.Client(intents=intents)
 ## Botの起動
 @client.event
 async def on_ready():
-    print('Start')
+    print("Start")
 
 
 # メッセージ受信時の処理
@@ -34,7 +36,7 @@ async def on_message(message):
 
 
 
-if __name__ == '__main__':
+async def main():
     try:
         print("ベクトルDBの状態を確認中...")
         vectorstore = WikiContent.get_vectorstore()
@@ -42,8 +44,17 @@ if __name__ == '__main__':
         Chatgpt.set_vectorstore(vectorstore)
         print("ベクトルDBの準備完了")
 
+        # Web サーバの立ち上げ
+        keep_alive()
+        
         # Bot起動
-        client.run(token)
+        await client.start(token)
+        print("Bot is running!")
 
-    except Exception as e:
-        print(f"エラーが発生しました: {e}")
+    except KeyboardInterrupt:
+        print("Botを停止しています...")
+        await client.close()
+
+
+if __name__ == '__main__':
+    asyncio.run(main())

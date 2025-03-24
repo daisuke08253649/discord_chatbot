@@ -17,8 +17,7 @@ class Chatgpt():
             raise ValueError("vectorstoreが初期化されていません")
 
     def resChatgpt(self):
-        # ChatGPTモデルの設定
-        llm = ChatOpenAI(model="gpt-4o")
+        llm = ChatOpenAI(model="gpt-4o") # ChatGPTモデルの設定
 
         # RAGチェーンの作成
         qa_chain = ConversationalRetrievalChain.from_llm(
