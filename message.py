@@ -49,10 +49,9 @@ async def main():
         
         # Bot起動
         await client.start(token)
-        print("Bot is running!")
 
     except KeyboardInterrupt:
-        print("Botを停止しています...")
+        # Bot停止
         await client.close()
 
 
