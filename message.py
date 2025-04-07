@@ -9,7 +9,7 @@ from app import keep_alive
 
 load_dotenv()
 
-DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
+token = os.getenv("DISCORD_TOKEN")
 
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
@@ -35,21 +35,17 @@ async def on_message(message):
         await message.channel.send("resMessage")
 
 
-# DBチェック
-def db_check():
+
+
+if __name__ == '__main__':
     print("ベクトルDBの状態を確認中...")
     # vectorstore = WikiContent.get_vectorstore()
     # vectorstoreをChatgptクラスに設定
     # Chatgpt.set_vectorstore(vectorstore)
     print("ベクトルDBの準備完了")
 
-
-if __name__ == '__main__':
-    # DBチェック
-    # db_check()
-
     # Web サーバの立ち上げ
     keep_alive()
     
     # Bot起動
-    client.run(DISCORD_TOKEN)
+    client.run(token)
