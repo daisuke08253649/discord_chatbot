@@ -22,10 +22,13 @@ async def on_message(message):
         return
 
     if client.user in message.mentions:
+        print("メッセージが来た！")
+        await message.channel.send("メッセージが来た！")
         print(message.content)
-        # chatgpt = Chatgpt(message.content)
-        # resMessage = chatgpt.resChatgpt()
-        await message.channel.send(message.content)
+        chatgpt = Chatgpt(message.content)
+        resMessage = chatgpt.resChatgpt()
+        await message.channel.send(resMessage)
+        await message.channel.send("メッセージを返した！")
 
 
 
