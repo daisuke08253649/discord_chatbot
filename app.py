@@ -2,6 +2,8 @@ import discord
 import os
 from dotenv import load_dotenv
 from keep_alive import keep_alive
+from wiki_assistant import Chatgpt
+from wiki_embeddings import WikiContent
 
 load_dotenv()
 
@@ -19,11 +21,22 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    # ユーザーからのメンションを受け取った場合、あらかじめ用意された配列からランダムに返信を返す
     if client.user in message.mentions:
-        await message.channel.send(message.content)
+        print(message.content)
+        chatgpt = Chatgpt(message.content)
+        resMessage = chatgpt.resChatgpt()
+        await message.channel.send(resMessage)
 
+
+
+print("ベクトルDBの状態を確認中...")
+vectorstore = WikiContent.get_vectorstore()
+# vectorstoreをChatgptクラスに設定
+Chatgpt.set_vectorstore(vectorstore)
+print("ベクトルDBの準備完了")
 
 # Web サーバの立ち上げ
 keep_alive()
+
+# Bot起動
 client.run(TOKEN)
