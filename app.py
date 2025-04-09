@@ -42,4 +42,4 @@ print("ベクトルDBの準備完了")
 keep_alive()
 
 # Bot起動
-client.run(TOKEN, reconnect=True, heartbeat_timeout=90.0)
+client.run(TOKEN, reconnect=True)
