@@ -31,9 +31,9 @@
 
 #         return result["answer"]
     
+# テスト用
 
 # if __name__ == "__main__":
-#     # テスト用
 #     test_text = input("質問を書いてください：")
 #     chatbot = Chatgpt(test_text)
 #     response = chatbot.resChatgpt()
