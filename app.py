@@ -23,9 +23,9 @@ async def on_message(message):
 
     if client.user in message.mentions:
         print(message.content)
-        chatgpt = Chatgpt(message.content)
-        resMessage = chatgpt.resChatgpt()
-        await message.channel.send(resMessage)
+        # chatgpt = Chatgpt(message.content)
+        # resMessage = chatgpt.resChatgpt()
+        await message.channel.send(message.content)
 
 
 
