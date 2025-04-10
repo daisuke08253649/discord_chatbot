@@ -22,19 +22,15 @@ async def on_message(message):
         return
 
     if client.user in message.mentions:
-        print("メッセージが来た！")
-        await message.channel.send("メッセージが来た！")
         print(message.content)
         chatgpt = Chatgpt(message.content)
         resMessage = chatgpt.resChatgpt()
         await message.channel.send(resMessage)
-        await message.channel.send("メッセージを返した！")
 
 
 
 print("ベクトルDBの状態を確認中...")
 vectorstore = WikiContent.get_vectorstore()
-# vectorstoreをChatgptクラスに設定
 Chatgpt.set_vectorstore(vectorstore)
 print("ベクトルDBの準備完了")
 
