@@ -9,6 +9,6 @@ class WikiContent():
         # 更新が不要な場合は既存のDBを読み込む
         print("既存のベクトルストアを読み込みます...")
         return Chroma(
-            persist_directory="https://avatar-studio.s3.ap-northeast-1.amazonaws.com/test_chroma_db",
+            persist_directory="test_chroma_db",
             embedding_function=embeddings
         )
