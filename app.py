@@ -34,8 +34,6 @@ async def on_message(message):
 
 print("ベクトルDBの状態を確認中...")
 vectorstore = WikiContent.get_vectorstore()
-print("vectorstore:", vectorstore)
-print("type:", type(vectorstore))
 Chatgpt.set_vectorstore(vectorstore)
 print("ベクトルDBの準備完了")
 

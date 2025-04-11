@@ -1,6 +1,6 @@
 from langchain_openai import ChatOpenAI
 from langchain.chains import ConversationalRetrievalChain
-
+import time
 
 class Chatgpt():
     _vectorstore = None
@@ -25,11 +25,15 @@ class Chatgpt():
             raise ValueError("vectorstore または qa_chain が初期化されていません")
 
     def resChatgpt(self):
+        start = time.time() # 開始時間
         # 質問と回答
         result = Chatgpt._qa_chain({
             "question": self.message,
             "chat_history": []
         })
+        
+        end = time.time() # 終了時間
+        print(f"回答処理時間: {end - start:.2f}秒")
 
         return result["answer"]
     
