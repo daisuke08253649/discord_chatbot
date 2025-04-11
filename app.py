@@ -25,19 +25,17 @@ async def on_message(message):
         return
 
     if client.user in message.mentions:
-        try:
-            print(message.content)
-            chatgpt = Chatgpt(message.content)
-            resMessage = chatgpt.resChatgpt()
-            await message.channel.send(resMessage)
-        except Exception as e:
-            print(f"エラーが発生しました: {e}")
-            await message.channel.send(f"エラーが発生しました: {e}")
+        print(message.content)
+        chatgpt = Chatgpt(message.content)
+        resMessage = chatgpt.resChatgpt()
+        await message.channel.send(resMessage)
 
 
 
 print("ベクトルDBの状態を確認中...")
 vectorstore = WikiContent.get_vectorstore()
+print("vectorstore:", vectorstore)
+print("type:", type(vectorstore))
 Chatgpt.set_vectorstore(vectorstore)
 print("ベクトルDBの準備完了")
 
