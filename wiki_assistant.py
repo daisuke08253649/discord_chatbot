@@ -31,11 +31,11 @@ class Chatgpt():
             "question": self.message,
             "chat_history": []
         })
-        
-        end = time.time() # 終了時間
-        print(f"回答処理時間: {end - start:.2f}秒")
 
-        return result["answer"]
+        end = time.time() # 終了時間
+        response_time = f"回答処理時間: {end - start:.2f}秒"
+
+        return result["answer"], response_time
     
 
 if __name__ == "__main__":
