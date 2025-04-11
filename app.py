@@ -9,7 +9,10 @@ load_dotenv()
 
 TOKEN = os.getenv("DISCORD_TOKEN")
 
-client = discord.Client(intents=discord.Intents.default())
+intents=discord.Intents.default()
+intents.messages = True
+intents.message_content = True
+client = discord.Client(intents=intents)
 
 @client.event
 async def on_ready():
@@ -22,10 +25,14 @@ async def on_message(message):
         return
 
     if client.user in message.mentions:
-        print(message.content)
-        chatgpt = Chatgpt(message.content)
-        resMessage = chatgpt.resChatgpt()
-        await message.channel.send(resMessage)
+        try:
+            print(message.content)
+            chatgpt = Chatgpt(message.content)
+            resMessage = chatgpt.resChatgpt()
+            await message.channel.send(resMessage)
+        except Exception as e:
+            print(f"エラーが発生しました: {e}")
+            await message.channel.send(f"エラーが発生しました: {e}")
 
 
 
