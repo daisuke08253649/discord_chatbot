@@ -28,7 +28,7 @@ async def on_message(message):
         print(message.content)
         chatgpt = Chatgpt(message.content)
         resMessage, resTime = chatgpt.resChatgpt()
-        await message.channel.send(f'{resMessage}/n回答処理時間:{resTime}')
+        await message.channel.send(f'{resMessage}\n{resTime}')
 
 
 
